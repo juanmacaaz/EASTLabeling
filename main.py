@@ -5,6 +5,13 @@
 # Programa para generar datos de entrenamiento para el modelo EAST
 # Formato de salida del txt >> 1071,233,1138,228,1142,253,1072,259,###
 
+# Costantes
+
+INPUT_DIR    = './input'
+SELECTED_DIR = './selected'
+SCALE = 0.7
+index = 0
+
 import cv2 as cv
 import os
 
@@ -28,23 +35,15 @@ class Points:
         elif self.index == 2: self.botRight = points; self.index += 1
         elif self.index == 3: self.botLeft  = points; self.index += 1
 
-# Costantes
-
-INPUT_DIR       = './input'
-SELECTED_DIR    = './selected'
-
-SCALE = 1
-
-index = 0
-
 def mouse_click(event, x, y, flags, param):
     if event == cv.EVENT_LBUTTONDOWN:
-        global index
-        points.setPoint((int(x/SCALE),int(y/SCALE)))
-        cv.circle(keyImgTemp, (x,y), 0, (255, 0, 0), 4)
-        cv.putText(keyImgTemp, str(index), (0, 30), cv.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2, cv.LINE_AA)
-        cv.imshow('main', keyImgTemp)
-        print(x,y)
+        if not points.isComplete():
+            global index
+            points.setPoint((int(x/SCALE),int(y/SCALE)))
+            cv.circle(keyImgTemp, (x,y), 0, (255, 0, 0), 4)
+            cv.putText(keyImgTemp, str(index), (0, 30), cv.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2, cv.LINE_AA)
+            cv.imshow('main', keyImgTemp)
+            print(x,y)
 
 imgPaths = os.listdir(INPUT_DIR)
 
