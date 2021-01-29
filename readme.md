@@ -6,7 +6,7 @@
 
 ## Iniciar
 
-1. Cargar en la carpeta "input" las imagenes en formato "jpg"
+1. Cargar en la carpeta "input" las imagenes en formato "jpg" (Hay que crear una carpeta "input" y "selected" en la raiz del proyecto)
 2. Ejecutar el programa desde la terminal, python main.py
 
 ## Uso
@@ -28,3 +28,5 @@
 2. En el codigo fuente hay una variable SCALE, cambiar en caso de que la imagen sea muy grande o pequena.
    El valor por defecto es 1, es decir que no aumentara.
    Es un factor multiplicativo. 0,5 la mas pequena, 2 el doble mas grande.
+
+3. Se puede cambiar en las constantes del fichero main.py el input y el output del programa.
